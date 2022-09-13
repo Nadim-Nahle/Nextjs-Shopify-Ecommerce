@@ -77,44 +77,82 @@ export async function getAllProducts() {
   return slugs;
 }
 
+
 export async function getProduct(handle) {
   const query = `
   {
-    productByHandle(handle:"${handle}"){
+    productByHandle(handle: "${handle}") {
+    	collections(first: 1) {
+      	edges {
+          node {
+            products(first: 5) {
+              edges {
+                node {
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  handle
+                  title
+                  id
+                  totalInventory
+                  images(first: 5) {
+                    edges {
+                      node {
+                        originalSrc
+                        altText
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    	}
       id
+      title
       handle
       description
-      images(first:5){
-        edges{
-          node{
+      images(first: 5) {
+        edges {
+          node {
             originalSrc
+            altText
           }
         }
       }
-      options{
+      options {
         name
         values
         id
       }
-      variants(first:25){
-        edges{
-          node{
-            selectedOptions{
+      variants(first: 25) {
+        edges {
+          node {
+            selectedOptions {
               name
               value
             }
-            image{
+            image {
               originalSrc
+              altText
             }
             title
             id
-            price
+            availableForSale
+            priceV2 {
+              amount
+            }
           }
         }
       }
     }
-  }
-  `
+  }`
   const response = await ShopifyData(query)
-  const product = response.data.productByHandle ? response.data.productByHandle : [];
+
+  const product = response.data.productByHandle ? response.data.productByHandle : []
+
+  return product
 }
