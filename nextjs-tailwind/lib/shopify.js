@@ -76,3 +76,45 @@ export async function getAllProducts() {
   const slugs = response.data.products.edges ? response.data.products.edges : [];
   return slugs;
 }
+
+export async function getProduct(handle) {
+  const query = `
+  {
+    productByHandle(handle:"${handle}"){
+      id
+      handle
+      description
+      images(first:5){
+        edges{
+          node{
+            originalSrc
+          }
+        }
+      }
+      options{
+        name
+        values
+        id
+      }
+      variants(first:25){
+        edges{
+          node{
+            selectedOptions{
+              name
+              value
+            }
+            image{
+              originalSrc
+            }
+            title
+            id
+            price
+          }
+        }
+      }
+    }
+  }
+  `
+  const response = await ShopifyData(query)
+  const product = response.data.productByHandle ? response.data.productByHandle : [];
+}
