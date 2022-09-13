@@ -4,7 +4,7 @@ import { getProductsInCollection } from "../lib/shopify"
 export default function Home({ products }) {
   console.log(products)
   return (
-    <div className="text-5xl"><ProductList products={products} /></div>
+    <div className="text-3xl"><ProductList products={products} /></div>
   )
 }
 export async function getStaticProps() {
