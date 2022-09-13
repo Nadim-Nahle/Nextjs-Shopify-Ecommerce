@@ -6,6 +6,8 @@ const ProductCard = ({ product }) => {
 
   const { altText, originalSrc } = product.node.images.edges[0].node;
 
+  const price = product.node.priceRange.minVariantPrice.amount;
+
   return (
     <Link href={`/products/${handle}`}>
       <a className="group">
