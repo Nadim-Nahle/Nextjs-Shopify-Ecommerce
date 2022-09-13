@@ -1,3 +1,5 @@
+import ProductCard from "./ProductCard"
+
 const ProductList = ({ products }) => {
     return (
         <div className="bg-white">
@@ -5,7 +7,9 @@ const ProductList = ({ products }) => {
                 <h2 className="text-2xl font-extrabold text-gray-900 mb-6">Product</h2>
                 <div className="grid grid-cols-1 gap-y-10 gap-x-6">
                     {
-                        products.map(product => (product.node.handle))
+                        products.map(product => (
+                            <ProductCard product={product} key={product.node.id} />
+                        ))
                     }
                 </div>
             </div>
