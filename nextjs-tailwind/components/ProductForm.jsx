@@ -51,16 +51,10 @@ export default function ProductForm({ product }) {
       <span className="pb-3">
         {formatter.format(product.variants.edges[0].node.priceV2.amount)}
       </span>
-      {product.options.map(({ name, values }) => (
-        <ProductOptions
-          key={`key-${name}`}
-          name={name}
-          values={values}
-          selectedOptions={selectedOptions}
-          setOptions={setOptions}
-          selectedVariant={selectedVariant}
-        />
-      ))}
+
+      <button className="bg-black rounded-lg text-white px-2 py-3 mt-3 hover:bg-gray-800">
+        Add To Card
+      </button>
     </div>
   );
 }
