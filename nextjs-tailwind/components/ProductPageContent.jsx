@@ -5,7 +5,7 @@ import SwiperCore, { Navigation, Pagination } from "swiper";
 import RecommendedList from "./RecommendedList";
 import { forwardRef } from "react";
 
-function ProductPageContent({ product, ref }) {
+function ProductPageContent({ product }) {
   const images = [];
   product.images.edges.map((image, i) => {
     images.push(
@@ -21,7 +21,7 @@ function ProductPageContent({ product, ref }) {
   });
   SwiperCore.use([Navigation, Pagination]);
   return (
-    <div ref={ref} id="Product">
+    <div id="Product">
       <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
         <div className="w-full max-w-md border bg-white rounded-2xl overflow-hidden shadow-lg md:w-1/2">
           <div className="relative h-96 w-full">
@@ -51,4 +51,4 @@ function ProductPageContent({ product, ref }) {
     </div>
   );
 }
-export default forwardRef(ProductPageContent);
+export default ProductPageContent;
