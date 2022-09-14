@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function ProductPageContent({ product }) {
-  return <div></div>;
+  return <div>{product.title}</div>;
 }
