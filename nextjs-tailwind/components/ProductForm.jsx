@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { formatter } from "../utils/helpers";
+import ProductOptions from "./ProductOptions";
 
 export default function ProductForm({ product }) {
   const allVariantOptions = product.variants.edges?.map((variant) => {
@@ -58,8 +59,6 @@ export default function ProductForm({ product }) {
           selectedOptions={selectedOptions}
           setOptions={setOptions}
           selectedVariant={selectedVariant}
-          productInventory={productInventory}
-          available={available}
         />
       ))}
     </div>
