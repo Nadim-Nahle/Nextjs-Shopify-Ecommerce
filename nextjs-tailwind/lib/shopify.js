@@ -190,6 +190,15 @@ export async function updateCheckout(id, lineItems) {
       checkout {
         id
         webUrl
+        lineItems(first: 25) {
+          edges {
+            node {
+              id
+              title
+              quantity
+            }
+          }
+        }
       }
     }
   }`
@@ -200,3 +209,4 @@ export async function updateCheckout(id, lineItems) {
 
   return checkout
 }
+
