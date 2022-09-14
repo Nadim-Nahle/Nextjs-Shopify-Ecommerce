@@ -3,8 +3,9 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import RecommendedList from "./RecommendedList";
+import { forwardRef } from "react";
 
-export default function ProductPageContent({ product }) {
+function ProductPageContent({ product, ref }) {
   const images = [];
   product.images.edges.map((image, i) => {
     images.push(
@@ -20,7 +21,7 @@ export default function ProductPageContent({ product }) {
   });
   SwiperCore.use([Navigation, Pagination]);
   return (
-    <div>
+    <div ref={ref} id="Product">
       <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
         <div className="w-full max-w-md border bg-white rounded-2xl overflow-hidden shadow-lg md:w-1/2">
           <div className="relative h-96 w-full">
@@ -50,3 +51,4 @@ export default function ProductPageContent({ product }) {
     </div>
   );
 }
+export default forwardRef(ProductPageContent);
